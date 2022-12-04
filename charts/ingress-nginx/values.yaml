@@ -446,6 +446,18 @@ controller:
   service:
     enabled: true
 
+    # -- If enabled a second service will be created for the controller pod to
+    # assign an IPv6 address via the Azure Load Balancer.
+    # This feature requires Kubernetes 1.21 or later on AKS with the preview
+    # dual stach feature enabled.
+    # The second service is required because the Azure Load Balancer
+    # does not support IPv6 addresses on the same service as IPv4 addresses.
+    #
+    # See the instructions to deploy an AKS dual-stack preview cluster:
+    # https://learn.microsoft.com/en-us/azure/aks/configure-kubenet-dual-stack
+    ##
+    previewAKSIPv6DualStackEnabled: false
+
     # -- If enabled is adding an appProtocol option for Kubernetes service. An appProtocol field replacing annotations that were
     # using for setting a backend protocol. Here is an example for AWS: service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
     # It allows choosing the protocol for each backend specified in the Kubernetes service.
